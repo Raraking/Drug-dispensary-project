@@ -1,0 +1,12 @@
+if (isset($_GET['source'])) {
+    $source = $_GET['source'];
+    if ($source === 'viewDoctors') {
+        $returnURL = 'viewDoctors.php';
+    } elseif ($source === 'doctorsHomePage') {
+        $returnURL = 'doctorsHomePage.php';
+    } else {
+        $returnURL = 'index.php'; // Default return URL if source is not recognized
+    }
+} else {
+    $returnURL = 'index.php'; // Default return URL if source is not set
+}

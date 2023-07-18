@@ -80,7 +80,7 @@ mysqli_close($conn);
 <!DOCTYPE html>
 <html>
 <head>
-    <title>View Inventory</title>
+    <title>View Doctors</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         /* Add your custom styles here */
@@ -182,7 +182,8 @@ mysqli_close($conn);
                     <td><?php echo $row['specialty']; ?></td>
                     <td><?php echo $row['email']; ?></td>
                     <td>
-                    <a href="editDoctors.php?doctorID=<?php echo $row['id']; ?>" class="edit-link">Edit</a>
+                    <a href="editDoctors.php?doctorID=<?php echo $row['id']; ?>&source=viewDoctors" class="edit-link">Edit</a>
+
                     </td>
                     <td>
                         <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
@@ -194,7 +195,7 @@ mysqli_close($conn);
             <?php endwhile; ?>
         </table>
     <?php else: ?>
-        <p>No inventory records found.</p>
+        <p>No doctor records found.</p>
     <?php endif; ?>
 <?php endif; ?>
       
@@ -210,7 +211,7 @@ mysqli_close($conn);
 
 <!-- Mid section after the table -->
 <div class='midsection'>
-    <a href="addDoctor.php?source=viewInventory">Add Doctor</a>
+    <a href="addDoctor.php?source=viewDoctors">Add Doctor</a>
     <!-- This approach allows the editInventory page (or any other page) to determine if the user reached that page by clicking a link from the viewInventory page. -->
 </div>
 

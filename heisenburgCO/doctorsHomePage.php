@@ -49,15 +49,15 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
         <div class="dropdown">
             <button class="dropbtn">View Patients</button>
             <div class="dropdown-content">
-                <a href="viewPatients.php?source=doctorHomePage">Patients</a>
+                <a href="viewPatients.php?source=doctorsHomePage">Patients</a>
             </div>
         </div>
     </div>
     <div class="option">
-        <a href="viewInventory.php?source=doctorHomePage">View Inventory</a>
+        <a href="createPrescription.php?source=doctorHomePage">Create Prescription</a>
     </div>
     <div class="option">
-        <a href="editUser.php">View Sales</a>
+    <a href="editDoctors.php?doctorID=<?php echo $userID; ?>&source=doctorHomePage">Edit Profile</a>
     </div>
 </section>
 </body>
