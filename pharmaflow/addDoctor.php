@@ -1,16 +1,12 @@
 <?php
-  // Check if the source parameter is present in the URL
   if(isset($_GET['source']) && $_GET['source'] === 'viewDoctors') {
-      // The link was clicked from the userHomePage
       echo "<p>Clicked from viewDoctors. Current URL: " . $_SERVER['PHP_SELF'] . "</p>";
       session_start();
   }
 
-  // Database connection
   include("database.php");
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validate and process the form data
     $id = $_POST['id'];
     $fName = $_POST['fName'];
     $lName= $_POST['lName'];
@@ -20,7 +16,6 @@
     $email = $_POST['email'];
     $password = $_POST ['password'];
 
-    // Escape the user input to prevent SQL injection
     $id = mysqli_real_escape_string($conn, $id);
     $fName = mysqli_real_escape_string($conn, $fName);
     $lName = mysqli_real_escape_string($conn, $lName);
@@ -30,12 +25,9 @@
     $email= mysqli_real_escape_string($conn, $email);
     $password= mysqli_real_escape_string($conn, $password);
 
-    // Create the insert query
     $insertQuery = "INSERT INTO doctors (id, fName, lName, SSN, specialty, DOB, email, password) VALUES ('$id', '$fName', '$lName', '$SSN','$specialty', '$DOB', '$email', '$password')";
 
-    // Execute the insert query
     if (mysqli_query($conn, $insertQuery)) {
-      // Redirect back to viewAllUsers.php after successful submission
       header("Location: viewDoctors.php");
       echo "Account has successfully been created. They may now log in as Doctor ". $fName. " ".$lName. " ";
       exit();
@@ -43,8 +35,7 @@
       echo "Error: " . $insertQuery . "<br>" . mysqli_error($conn);
       echo "error inserting into database";
     }
-
-    // Close the database connection
+    
     mysqli_close($conn);
   }
 ?>
