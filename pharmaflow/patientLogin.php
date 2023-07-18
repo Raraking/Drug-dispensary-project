@@ -1,7 +1,4 @@
 <?php
-//echo session_save_path();
-//error_reporting(E_ALL);
-//ini_set('display_errors', 1);
 session_start();
 include("database.php");
 ?>
@@ -56,19 +53,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    // Query to check if user and password exist in the database
     $sql = "SELECT * FROM patients WHERE email = '$email' AND password = '$password';";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
-        // User and password exist in the database
         $row = mysqli_fetch_assoc($result);
         $_SESSION['id'] = $row['id'];
-        // Redirect the user to the desired page, for example:
         header('Location: patientsHomePage.php');
         exit();
     } else {
-        // User and/or password do not exist in the database
         echo $email . " is an invalid user or password.";
     }
 }
