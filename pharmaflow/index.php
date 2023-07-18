@@ -14,7 +14,6 @@
     <body class="indexPage">
         <?php include 'header.html';?>
 
-        <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
                 <h1>Welcome to Pharmaflow Limited.</h1>
@@ -38,7 +37,6 @@
             </div>
         </section>
 
-        <!-- Footer Section -->
         <footer>
             <p>&copy; PHARMAFLOW LIMITED. All rights reserved.</p>
             <div class="social-links">
