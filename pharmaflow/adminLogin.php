@@ -1,5 +1,4 @@
 <?php
-//echo session_save_path();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
@@ -57,20 +56,17 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $pwd= $_POST["password"];
     
     include ("database.php");
-    //Query to check if user and password exist in the database
     $stmt = $conn->prepare("SELECT * FROM Admin WHERE userID = ? AND password = ?");
     $stmt->bind_param("ss", $userID, $pwd);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        // User and password exist in the database
         session_start();
         $_SESSION['userID'] = $userID;
         echo $_SESSION['userID']. " Logged in successfully!". "<br>";
         header("Location: adminHomePage.php");
     } else {
-        // User and/or password do not exist in the database
         echo "<script>alert('Invalid user ID or password');</script>";
     }
 }
