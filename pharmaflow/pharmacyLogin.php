@@ -1,7 +1,7 @@
 <?php
 //echo session_save_path();
-//error_reporting(E_ALL);
-//ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start();
 include ("database.php");
 ?>
@@ -62,18 +62,14 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $tableExists = mysqli_num_rows($tableExistsResult) > 0;
 
     if ($tableExists) {
-        // Query to check if user and password exist in the database
         $sql = "SELECT * FROM pharmacists WHERE id = '$id' AND password = '$password';";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
-            // User and password exist in the database
             $_SESSION['id'] = $id;
-            // Redirect the user to the desired page, for example:
             header('Location: pharmacistHomePage.php');
             exit();
         } else {
-            // User and/or password do not exist in the database
             echo $id . " is an invalid ID or password.";
         }
     } else {
