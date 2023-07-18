@@ -12,7 +12,6 @@ if (isset($_SESSION['id'])) {
 }
 
 if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
-    // Destroy the session and redirect to the login page
     session_destroy();
     //echo "<script>alert('Successfully logged out');</script>";
     header('Location: doctorLogin.php');
