@@ -4,7 +4,6 @@ ini_set('display_errors', 1);
 session_start();
 include("database.php");
 
-// Check the source page and set the return URL accordingly
 if (isset($_GET['source'])) {
     $source = $_GET['source'];
     if ($source == 'viewDoctors') {
@@ -43,8 +42,6 @@ if ($doctorID) {
     <title>Edit Details of Doctor <?php echo $_SESSION['fName']; ?></title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Add your custom styles here */
-        /* The styles from your previous CSS file can be included here */
         h2 {
             text-align: center;
             margin-top: 70px;
