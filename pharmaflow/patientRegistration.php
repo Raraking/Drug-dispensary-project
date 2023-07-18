@@ -1,10 +1,8 @@
 <?php
 session_start();
 
-// Database connection
 include("database.php");
 
-// Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the form data
     $id = $_POST['id'];
@@ -15,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Escape the user input to prevent SQL injection
     $id = mysqli_real_escape_string($conn, $id);
     $fName = mysqli_real_escape_string($conn, $fName);
     $lName = mysqli_real_escape_string($conn, $lName);
@@ -24,23 +21,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = mysqli_real_escape_string($conn, $email);
     $password = mysqli_real_escape_string($conn, $password);
 
-    // Perform any necessary validation on the input data
-
-    // Insert the patient into the database
     $insertQuery = "INSERT INTO patients (id, fName, lName, SSN, DOB, email, password) VALUES ('$id', '$fName', '$lName', '$SSN', '$DOB', '$email', '$password')";
 
     if (mysqli_query($conn, $insertQuery)) {
-        // Patient registered successfully
         $_SESSION['success_message'] = "You have successfully created a patient's account. You may now log in.";
-        // Redirect to patient login page
         header('Location: patientLogin.php');
         exit();
     } else {
-        // Error registering patient
         $_SESSION['error_message'] = "Failed to create patient account: " . mysqli_error($conn);
     }
 
-    // Close the database connection
     mysqli_close($conn);
 }
 ?>
@@ -51,8 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Patient Account Registration</title>
     <link href="styles.css" rel="stylesheet"/>
     <style>
-        /* Add your custom styles here */
-        /* The styles from your previous CSS file can be included here */
         h2 {
             text-align: center;
             margin-top: 70px;
