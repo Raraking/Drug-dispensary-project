@@ -45,6 +45,59 @@
 <head>
   <title>Doctor Account Registration</title>
   <link href="styles.css" rel="stylesheet"/>
+  <style>
+        /* Add your custom styles here */
+        /* The styles from your previous CSS file can be included here */
+        h2 {
+            text-align: center;
+            margin-top: 50px;
+            color: #162938;
+        }
+
+        form {
+            width: 400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgb(255, 253, 253, 0.2);
+            border: 2px solid rgba(255,255,255,.5);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0,0,0,0.7);
+            padding: 30px;
+        }
+
+        label {
+            font-size: 1em;
+            color: #162938;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            height: 35px;
+            border: 2px solid #162938;
+            border-radius: 6px;
+            outline: none;
+            font-size: 1em;
+            color: #162938;
+            font-weight: 600;
+            padding: 0 5px;
+            margin-bottom: 15px;
+        }
+
+        input[type="submit"] {
+            background-color: #162938;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #131a21;
+        }
+    </style>
 </head>
 <body>
   <h2>Create Doctor's Account</h2>
