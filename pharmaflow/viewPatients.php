@@ -4,7 +4,6 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
 if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
-    // Destroy the session and redirect to login page
     session_destroy();
     //echo "<script>alert('successfully logged out');</script>";
     header('Location: adminLogin.php');
@@ -14,23 +13,20 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
 
 if (isset($_SESSION['update_success_message'])) {
     echo "<p class='success-message'>" . $_SESSION['update_success_message'] . "</p>";
-    unset($_SESSION['update_success_message']); // Clear the session variable
+    unset($_SESSION['update_success_message']);
 }
 if (isset($_SESSION['update_error_message'])) {
     echo "<p class='error-message'>" . $_SESSION['update_error_message'] . "</p>";
-    unset($_SESSION['update_error_message']); // Clear the session variable
+    unset($_SESSION['update_error_message']);
 }
 // Check if the source parameter is present in the URL
 if (isset($_GET['source']) && $_GET['source'] === 'adminHomePage') {
-    // The link was clicked from the adminHomePage
     //echo "<p>Clicked from adminHomePage. Current URL: " . $_SERVER['PHP_SELF'] . "</p>";
 
 }
 
-// Database connection
 include("database.php");
 
-// Query to fetch all rows from the Patients table
 $sql = "SELECT * FROM patients";
 $result = mysqli_query($conn, $sql);
 
@@ -81,9 +77,6 @@ if (isset($_POST['deletePatientID'])) {
     <title>View Patients</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Add your custom styles here */
-        /* The styles from your previous CSS file can be included here */
-        /* Additional styles for the Edit link */
         .edit-link {
             color: green;
             text-decoration: none;
@@ -113,12 +106,10 @@ if (isset($_POST['deletePatientID'])) {
         </form>
     </div>
 
-    <!-- Handle search if there is -->
     <?php if (isset($_POST['searchPatientID'])): ?>
         <?php
-        // Fetch search input and assign it to a variable
         $searchPatientID = $_POST['searchPatientID'];
-        echo "This is what you are searching: " . $searchPatientID;
+        echo "Search results: " . $searchPatientID;
         // Create search query and store the result
         $searchQuery = "SELECT * FROM patients WHERE id = '$searchPatientID'";
         $searchResult = mysqli_query($conn, $searchQuery);
@@ -158,7 +149,6 @@ if (isset($_POST['deletePatientID'])) {
             <p>No records found for patient ID: <?php echo $searchPatientID; ?></p>
         <?php endif; ?>
     <?php else: ?>
-        <!-- Display the records in a table (without search) -->
         <?php if (mysqli_num_rows($result) > 0): ?>
             <div class="search-table-container">
                 <table>
@@ -203,10 +193,8 @@ if (isset($_POST['deletePatientID'])) {
         <?php endfor; ?>
     </div>
 
-    <!-- Mid section after the table -->
     <div class='midsection'>
         <a href="addPatient.php?source=viewPatients">Add Patient</a>
-        <!-- This approach allows the editPatient page (or any other page) to determine if the user reached that page by clicking a link from the viewPatients page. -->
     </div>
 
     <script>
