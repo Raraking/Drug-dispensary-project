@@ -1,7 +1,5 @@
 <?php
-  // Check if the source parameter is present in the URL
   if(isset($_GET['source']) && $_GET['source'] === 'viewPharmacists') {
-      // The link was clicked from the userHomePage
       echo "<p>Clicked from viewPharmacists. Current URL: " . $_SERVER['PHP_SELF'] . "</p>";
       session_start();
   }
@@ -17,7 +15,6 @@
     $email = $_POST['email'];
     $password = $_POST ['password'];
 
-    // Escape the user input to prevent SQL injection
     $id = mysqli_real_escape_string($conn, $id);
     $fName = mysqli_real_escape_string($conn, $fName);
     $lName = mysqli_real_escape_string($conn, $lName);
@@ -26,12 +23,9 @@
     $email= mysqli_real_escape_string($conn, $email);
     $password= mysqli_real_escape_string($conn, $password);
 
-    // Create the insert query
     $insertQuery = "INSERT INTO pharmacists (id, fName, lName, SSN, pharmacy, email, password) VALUES ('$id', '$fName', '$lName', '$SSN','$pharmacy', '$email', '$password')";
 
-    // Execute the insert query
-    if (mysqli_query($conn, $insertQuery)) {
-      // Redirect back to viewAllUsers.php after successful submission
+    if (mysqli_query($conn, $insertQuery)){
       header("Location: viewPharmacists.php");
       echo "Account has successfully been created. They may now log in as Pharmacist ". $fName. " ".$lName. " ";
       exit();
@@ -40,7 +34,6 @@
       echo "error inserting into database";
     }
 
-    // Close the database connection
     mysqli_close($conn);
   }
 ?>
