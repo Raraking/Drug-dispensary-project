@@ -62,7 +62,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_num_rows($result) > 0) {
         // User and password exist in the database
-        $_SESSION['email'] = $email;
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION['id'] = $row['id'];
         // Redirect the user to the desired page, for example:
         header('Location: patientsHomePage.php');
         exit();

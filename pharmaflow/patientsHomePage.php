@@ -47,7 +47,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
 </header>
 <section class="options">
     <div class="option">
-        <a href="viewmyPrescriptions.php?source=patientsHomePage">View my prescriptions</a>
+        <a href="viewmyPrescriptions.php?patientID=<?php echo $id; ?>&source=patientsHomePage">View my prescriptions</a>
     </div>
     <div class="option">
         <a href="doctorviewInventory.php?source=doctorHomePage">View Inventory</a>

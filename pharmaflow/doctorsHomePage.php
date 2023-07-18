@@ -59,6 +59,9 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     <div class="option">
         <a href="viewPrescriptions.php">View Prescriptions</a>
     </div>
+    <div class="option">
+    <a href="editDoctors.php?doctorID=<?php echo $userID; ?>&source=doctorHomePage">Edit Profile</a>
+    </div>
 
 </section>
 </body>
