@@ -1,0 +1,538 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,500;1,300&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body.indexPage{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: url('images/admins5.jpg')no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+main{
+    flex: 1 0 auto;  
+}
+
+
+body.patientPage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('images/patients.jpg')no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+body.doctorPage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('images/doctors.jpg')no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+body.pharmacyPage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('images/pharmacies.jpg')no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+body.adminPage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('images/admins.jpg')no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+    background-color: rgba(0,0,0,0.7);
+}
+.logo{
+    font-size: 2em;
+    color: white;
+    user-select: none;
+
+}
+.navigation a{
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+.navigation a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .5s;
+}
+.navigation a:hover::after{
+    transform-origin: left;
+    transform: scaleX(1);
+}
+.navigation .btnLogin-popup{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid white;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+.navigation .btnLogin-popup:hover{
+    background-color: #fff;
+    color: #162938;
+}
+.wrapper{
+    position: relative;
+    width: 400px;
+    height: 490px;
+    background: rgb(255, 253, 253, 0.2);
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('hero-background.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 100px 0;
+    text-align: center;
+    color: #fff;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    background: #162938;; /* Black background with 50% opacity */
+    padding: 10px; /* Add some padding so the background extends beyond the text */
+}
+
+.hero p {
+    background: rgba(255, 255, 255, 0.5); /* White background with 50% opacity */
+    padding: 10px; /* Add some padding so the background extends beyond the text */
+}
+
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 0;
+    background-color: rgba(255,255,255,.7);
+    border: 2px solid transparent; /* Add this line */
+    margin: 20px 0; /* Add this line to give some space above and below the div */
+}
+
+.feature {
+    width: 30%;
+    text-align: center;
+}
+
+footer{
+    background-color: rgba(0, 0, 0, 0.7); /* semi-transparent dark grey */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0; /* reduced top and bottom padding */
+    margin-top: auto;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+}
+
+footer p{
+    font-size: 1.2em;
+    color: white;
+    font-weight: 500;
+    text-align: justify;
+    line-height: 1.5;
+    margin: 20px 0;
+    padding: 0 15px;
+}
+
+footer a
+
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links a {
+    margin: 0 10px;
+    color: #fff;
+}
+.hero-container,
+.features-container,
+.footer-container {
+    flex: 1 0 auto;
+}
+
+p {
+    font-size: 1.2em;
+    color: #162938;
+    font-weight: 500;
+    text-align: justify;
+    line-height: 1.5;
+    margin: 20px 0;
+    padding: 0 15px;
+}
+
+
+.wrapper .form-box{
+    width: 100%;
+    padding: 40px;
+}
+
+.form-box h2{
+    font-size: 2em;
+    color:#162938;
+    text-align: center;
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #162938;
+    margin: 30px 0;
+}
+
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #162938;
+    font-weight: 500;
+    pointer-events: none;
+}
+.input-box input:focus~label,
+.input-box input:not(:placeholder-shown)~label{
+    top: -5px;
+}
+
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #162938;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+
+.input-box .icon{
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: #162938;
+    line-height: 57px;
+}
+
+.user-type{
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.user-type label{
+    color: #162938;
+    font-weight: 500;
+    font-size: 0.9em;
+}
+
+.user-type input{
+    margin-right: 5px;
+}
+
+.remember-forgot{
+    font-size: .9em;
+    color: #162938;
+    font-weight: 500;
+    margin: -5 px 0 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forgot label input{
+    accent-color: #162938;
+    margin-right: 3px;
+}
+
+.remember-forgot a {
+    color: #162938;
+    text-decoration: none;
+}
+.remember-forgot a:hover{
+    text-decoration: underline;
+
+}
+.btn{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 45px;
+    background: #162938;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    font-weight: 500;
+}
+
+.options {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 0;
+    background-color: transparent;
+    border: 2px solid transparent; /* Add this line */
+    margin-top : 100px ; 
+}
+
+.option {
+    width: 50%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    padding: 50px; /* Add some padding so the content isn't right up against the edge */
+    border-radius: 110px; /* Optional: Rounds the corners of the div */
+    margin: 5%;
+    backdrop-filter: blur(10px); /* Apply a blur effect to the area behind the element */
+}
+
+
+.option a {
+    position: relative;
+    font-size: 1.1em;
+    color: #162938; /* This is the color used in other parts of your CSS */
+    text-decoration: none;
+    font-weight: 500;
+    margin: auto;
+}
+
+.option a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #162938; /* This is the color used in other parts of your CSS */
+    border-radius: 5px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .5s;
+}
+
+.option a:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+body.adminHomePage{
+    align-items: center;
+    min-height: 100vh;
+    background: url(images/admins.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: transparent;
+    color: #162938;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    border-radius: 1px; /* Optional: Rounds the corners of the div */
+}
+
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #9c7d7d}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {
+    background-color: transparent;
+  }
+
+  table {
+    margin-top: 100px; /* Adjust this value as needed */
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Style the table cells */
+table th, table td {
+    padding: 10px;
+    border: 1px solid #162938d1;
+    text-align: left;
+}
+
+/* Style the table headers */
+table th {
+    background-color: #162938d1;
+    color: white;
+}
+
+/* Style the table rows */
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style the pagination links */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #162938;
+}
+
+.pagination a.active {
+    font-weight: bold;
+}
+
+/* Style the midsection links */
+.midsection a {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px 20px;
+    background-color: #162938d1;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.midsection a:hover {
+    background-color: #131a21;
+}
+  
+.search-section {
+    margin-top: 100px; /* Adjust this value as needed */
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    padding: 20px; /* Add some padding so the content isn't right up against the edge */
+    border-radius: 10px; /* Optional: Rounds the corners of the div */
+    backdrop-filter: blur(10px); /* Apply a blur effect to the area behind the element */
+}
+
+.search-section h2 {
+    color: #162938;
+    margin-bottom: 20px;
+}
+
+.search-section form {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    padding: 10px; /* Add some padding so the content isn't right up against the edge */
+    border-radius: 5px; /* Optional: Rounds the corners of the div */
+}
+
+.search-section input[type="submit"] {
+    background-color: #162938;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.search-section input[type="submit"]:hover {
+    background-color: #131a21;
+}
+
+.table-container, .search-table-container{
+    margin-top: -50px; /* Adjust this value as needed */
+}
+
+
+
