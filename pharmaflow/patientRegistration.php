@@ -1,10 +1,11 @@
 <?php
 session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 include("database.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get the form data
     $id = $_POST['id'];
     $fName = $_POST['fName'];
     $lName = $_POST['lName'];
