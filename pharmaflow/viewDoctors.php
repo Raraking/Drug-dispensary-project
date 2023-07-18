@@ -4,7 +4,6 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
 if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
-    // Destroy the session and redirect to login page
     session_destroy();
     //echo "<script>alert('successfully logged out');</script>";
     header('Location: adminLogin.php');
@@ -21,49 +20,36 @@ if (isset($_SESSION['update_error_message'])) {
 }
 // Check if the source parameter is present in the URL
 if (isset($_GET['source']) && $_GET['source'] === 'adminHomePage') {
-    // The link was clicked from the adminHomePage
     //echo "<p>Clicked from adminHomePage. Current URL: " . $_SERVER['PHP_SELF'] . "</p>";
 }
 
-// Database connection
 include("database.php");
-
-// Query to fetch all rows from the Inventory table
 $sql = "SELECT * FROM doctors";
 $result = mysqli_query($conn, $sql);
 
-// Number of records per page
 $recordsPerPage = 10;
 
-// Total number of records
 $totalRecords = mysqli_num_rows($result);
 
-// Total number of pages
 $totalPages = ceil($totalRecords / $recordsPerPage);
 
-// Get the current page number
 if (isset($_GET['page']) && is_numeric($_GET['page'])) {
     $currentPage = $_GET['page'];
 } else {
     $currentPage = 1;
 }
 
-// Calculate the offset for the query
 $offset = ($currentPage - 1) * $recordsPerPage;
 
-// Query to fetch records for the current page
 $sql .= " LIMIT $offset, $recordsPerPage";
 $result = mysqli_query($conn, $sql);
 
-// Handle delete doctor data
 if (isset($_POST['deleteDoctorID'])) {
     $deleteDoctorID = $_POST['deleteDoctorID'];
 
-    // Delete doctor from the database
     $deleteQuery = "DELETE FROM doctors WHERE id = '$deleteDoctorID'";
     mysqli_query($conn, $deleteQuery);
 
-    // Redirect to refresh the page
     header("location: viewDoctors.php");
     exit();
 }
@@ -76,9 +62,6 @@ if (isset($_POST['deleteDoctorID'])) {
     <title>View Doctors</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Add your custom styles here */
-        /* The styles from your previous CSS file can be included here */
-        /* Additional styles for the Edit link */
         .edit-link {
             color: green;
             text-decoration: none;
@@ -205,7 +188,6 @@ if (isset($_POST['deleteDoctorID'])) {
     <!-- Mid section after the table -->
     <div class='midsection'>
         <a href="addDoctor.php?source=viewInventory">Add Doctor</a>
-        <!-- This approach allows the editInventory page (or any other page) to determine if the user reached that page by clicking a link from the viewInventory page. -->
     </div>
 
     <script>
