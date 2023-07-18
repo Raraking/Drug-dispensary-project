@@ -1,35 +1,28 @@
 <?php
-  // Check if the source parameter is present in the URL
   if(isset($_GET['source']) && $_GET['source'] === 'viewInventory') {
-      // The link was clicked from the userHomePage
       //echo "<p>Clicked from viewInventory. Current URL: " . $_SERVER['PHP_SELF'] . "</p>";
       session_start();
   }
 
-  // Database connection
   include("database.php");
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validate and process the form data
     $id = $_POST['id'];
     $name = $_POST['name'];
     $type = $_POST['type'];
     $price= $_POST['price'];
     $quantity = $_POST['quantity'];
 
-    // Escape the user input to prevent SQL injection
     $id = mysqli_real_escape_string($conn, $id);
     $name = mysqli_real_escape_string($conn, $name);
     $type = mysqli_real_escape_string($conn, $type);
     $price = mysqli_real_escape_string($conn, $price);
     $quantity= mysqli_real_escape_string($conn, $quantity);
 
-    // Create the insert query
     $insertQuery = "INSERT INTO Inventory (id,name,type, price, quantity) VALUES ('$id','$name', '$type', '$price', '$quantity')";
 
-    // Execute the insert query
+    
     if (mysqli_query($conn, $insertQuery)) {
-      // Redirect back to viewAllUsers.php after successful submission
       header("Location: viewInventory.php");
       echo "drug ". $id. " added successfully";
       exit();
@@ -38,7 +31,6 @@
       echo "error inserting into database";
     }
 
-    // Close the database connection
     mysqli_close($conn);
   }
 ?>
@@ -49,8 +41,6 @@
   <title>Inventory</title>
   <link href="styles.css" rel="stylesheet"/>
   <style>
-        /* Add your custom styles here */
-        /* The styles from your previous CSS file can be included here */
         h2 {
             text-align: center;
             margin-top: 50px;
