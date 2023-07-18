@@ -13,9 +13,8 @@ if (isset($_GET['source'])) {
         $returnURL = 'doctorsHomePage.php';
     } else {
         $returnURL = 'index.php';
-} 
-}
-else {
+    }
+} else {
     $returnURL = 'index.php';
 }
 
@@ -43,11 +42,76 @@ if ($doctorID) {
 <head>
     <title>Edit Details of Doctor <?php echo $_SESSION['fName']; ?></title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Add your custom styles here */
+        /* The styles from your previous CSS file can be included here */
+        h2 {
+            text-align: center;
+            margin-top: 70px;
+            color: #162938;
+        }
+
+        form {
+            width: 400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgb(255, 253, 253, 0.2);
+            border: 2px solid rgba(255,255,255,.5);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0,0,0,0.7);
+            padding: 30px;
+        }
+
+        label {
+            font-size: 1em;
+            color: #162938;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            height: 35px;
+            border: 2px solid #162938;
+            border-radius: 6px;
+            outline: none;
+            font-size: 1em;
+            color: #162938;
+            font-weight: 600;
+            padding: 0 5px;
+            margin-bottom: 15px;
+        }
+
+        input[type="submit"] {
+            background-color: #162938;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #131a21;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 70px;
+            color: #162938;
+        }
+
+        .success-message {
+            text-align: center;
+            color: green;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+    </style>
 </head>
 <body>
     <h2>Edit Doctor</h2>
-    <p>Edit Details for Dr <?php echo $_SESSION['fName']; ?><br></p>
-
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?source=' . urlencode($source) . '&doctorID=' . urlencode($doctorID); ?>">
         <label for="specialty">Specialty:</label>
         <input type="text" name="specialty" value="<?php echo isset($specialty) ? $specialty : ''; ?>">
@@ -65,7 +129,7 @@ if ($doctorID) {
         <input type="password" name="confirm_password">
         <br><br>
 
-        <input type="submit" name="submit">
+        <input type="submit" name="submit" value="Update Details">
     </form>
 </body>
 </html>
