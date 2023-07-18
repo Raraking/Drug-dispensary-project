@@ -6,14 +6,13 @@ ini_set('display_errors', 1);
 <?php
 session_start();
 
-$id = ""; // Set a default value for $patientID
+$id = "";
 
 if (isset($_SESSION['id'])) {
     $id = $_SESSION['id'];
 }
 
 if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
-    // Destroy the session and redirect to the login page
     session_destroy();
     //echo "<script>alert('Successfully logged out');</script>";
     header('Location: patientLogin.php');
