@@ -58,21 +58,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST["id"];
     $password = $_POST["password"];
 
-    // Query to check if user and password exist in the database
     $sql = "SELECT * FROM doctors WHERE id = '$id' AND password = '$password';";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
-        // User and password exist in the database
         session_start();
         $_SESSION['id'] = $id;
         echo $_SESSION['id'] . " Logged in successfully!" . "<br>";
         header("Location: doctorsHomePage.php");
         exit();
     } else {
-        // User and/or password do not exist in the database
         echo "<script>alert('Invalid doctor ID or password. Please try again.');</script>";
-        // Debug Information
         echo "id: " . $id . "<br>";
         echo "password: " . $password . "<br>";
         echo "SQL Query: " . $sql . "<br>";
