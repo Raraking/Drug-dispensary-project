@@ -12,7 +12,6 @@ if (isset($_SESSION['userID'])) {
 }
 
 if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
-  // Destroy the session and redirect to login page
   session_destroy();
   //echo "<script>alert('successfully logged out');</script>";
   header('Location: adminLogin.php');
