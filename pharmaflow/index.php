@@ -38,7 +38,7 @@
         </section>
 
         <footer>
-            <p>&copy; PHARMAFLOW LIMITED. All rights reserved.</p>
+            <p>&copy; PHARMAFLOW LIMITED by Nicole Gone and Lincks Morara.</p>
             <div class="social-links">
                 <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
                 <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
