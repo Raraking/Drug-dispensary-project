@@ -1,11 +1,10 @@
 <?php
 session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 include("database.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get the form data
     $id = $_POST['id'];
     $fName = $_POST['fName'];
     $lName = $_POST['lName'];
@@ -103,12 +102,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: green;
             font-weight: bold;
             margin: 15px 0;
+            display: none;
         }
 
     </style>
 </head>
 <body>
     <h2>Create your account as a patient</h2>
+
+    <div id="successMessage" class="success-message">
+        Patient successfully registered
+    </div>
+
     <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <label for="id">Patient's ID:</label>
         <input type="number" id="id" name="id" required>
@@ -133,5 +138,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <input type="submit" name="submit" value="Create account">
     </form>
+
+    <script>
+        <?php
+        if (isset($_SESSION['success_message'])) {
+            echo 'document.getElementById("successMessage").style.display = "block";';
+            unset($_SESSION['success_message']);
+        }
+        ?>
+        
+        setTimeout(function () {
+            var successMessage = document.getElementById("successMessage");
+            if (successMessage.style.display === "block") {
+                successMessage.style.display = "none";
+            }
+        }, 5000); //(5 seconds)
+    </script>
 </body>
 </html>
