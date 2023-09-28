@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
 <?php
 session_start();
 
-$id = "";
+$id = ""; 
 
 if (isset($_SESSION['id'])) {
     $id = $_SESSION['id'];
@@ -14,7 +14,7 @@ if (isset($_SESSION['id'])) {
 
 if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     session_destroy();
-    //echo "<script>alert('Successfully logged out');</script>";
+    echo "<script>alert('Successfully logged out');</script>";
     header('Location: patientLogin.php');
     exit();
 }
@@ -50,6 +50,9 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     </div>
     <div class="option">
         <a href="doctorviewInventory.php?source=doctorHomePage">View Inventory</a>
+    </div>
+    <div class="option">
+        <a href="medicineDrugs.php?source=doctorHomePage">Drug Store</a>
     </div>
 </section>
 </body>
