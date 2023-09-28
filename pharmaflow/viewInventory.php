@@ -1,25 +1,24 @@
 <?php
-//echo session_save_path();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
 
-$userID = isset($_SESSION['userID']) ? $_SESSION['userID'] : ''; 
+$id = isset($_SESSION['id']) ? $_SESSION['id'] : '';
 
 if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     session_destroy();
-    //echo "<script>alert('successfully logged out');</script>";
-    header('Location: adminLogin.php');
+    echo "<script>alert('successfully logged out');</script>";
+    header('Location: pharmacyLogin.php');
     exit();
 }
 
 if (isset($_SESSION['update_success_message'])) {
     echo "<p class='success-message'>" . $_SESSION['update_success_message'] . "</p>";
-    unset($_SESSION['update_success_message']);
+    unset($_SESSION['update_success_message']); 
 }
 if (isset($_SESSION['update_error_message'])) {
     echo "<p class='error-message'>" . $_SESSION['update_error_message'] . "</p>";
-    unset($_SESSION['update_error_message']);
+    unset($_SESSION['update_error_message']); 
 }
 if (isset($_GET['source']) && $_GET['source'] === 'adminHomePage') {
     //echo "<p>Clicked from adminHomePage. Current URL: " . $_SERVER['PHP_SELF'] . "</p>";
@@ -47,20 +46,30 @@ $offset = ($currentPage - 1) * $recordsPerPage;
 $sql .= " LIMIT $offset, $recordsPerPage";
 $result = mysqli_query($conn, $sql);
 
+
 if (isset($_POST['deleteInventoryID'])) {
     $deleteInventoryID = $_POST['deleteInventoryID'];
 
+    // Get the image path before deleting the record
+    $getImagePathQuery = "SELECT image_path FROM inventory WHERE id = '$deleteInventoryID'";
+    $imageResult = mysqli_query($conn, $getImagePathQuery);
+    $imageRow = mysqli_fetch_assoc($imageResult);
+    $imagePathToDelete = $imageRow['image_path'];
+
+    // Delete the record
     $deleteQuery = "DELETE FROM inventory WHERE id = '$deleteInventoryID'";
     mysqli_query($conn, $deleteQuery);
 
+    // Delete the image file
+    if (file_exists($imagePathToDelete)) {
+        unlink($imagePathToDelete);
+    }
+
     header("location: viewInventory.php");
     exit();
-}
-else{
+} else {
     echo "No inventory ID deleted";
 }
-
-// Close the database connection
 mysqli_close($conn);
 ?>
 
@@ -81,8 +90,8 @@ mysqli_close($conn);
 <header>
     <h2 class="logo">PHARMAFLOW LIMITED</h2>
     <nav class="navigation">
-        <a href="#"><?php echo $_SESSION['id']?></a>
-        <a href="adminHomePage.php">Home</a>
+        <a href="#">Pharmacist: <?php echo $id ?></a>
+        <a href="pharmacistHomePage.php">Home</a>
         <a href="?logout=true" class="logout-button" onclick="return confirmLogout()">Logout</a>
     </nav>
 </header>
@@ -113,6 +122,7 @@ mysqli_close($conn);
                 <th>Item Type</th>
                 <th>Price</th>
                 <th>Quantity</th>
+                <th>Item Category</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -123,6 +133,7 @@ mysqli_close($conn);
                     <td><?php echo $row['type']; ?></td>
                     <td><?php echo $row['price'];?></td>
                     <td><?php echo $row['quantity'];?></td>
+                    <td><?php echo $row['category'];?></td>
                     <td>
                         <a href="editInventory.php?inventoryID=<?php echo $row['id']; ?>" class="edit-link">Edit</a>
                     </td>
@@ -142,43 +153,51 @@ mysqli_close($conn);
     </div>
 <?php else: ?>
     <?php if (mysqli_num_rows($result) > 0): ?>
-      <div class="search-table-container">
+    <div class="search-table-container">
         <table>
             <tr>
                 <th>Inventory ID</th>
-                <th>Item Name</th>
-                <th>Item Type</th>
+                <th>Drug Name</th>
+                <th>Drug Type</th>
                 <th>Price</th>
                 <th>Quantity</th>
+                <th>Drug Category</th>
+                <th>Image</th> 
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
             <?php while ($row = mysqli_fetch_assoc($result)): ?>
                 <tr>
-                <td><?php echo $row['id']; ?></td>
+                    <td><?php echo $row['id']; ?></td>
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['type']; ?></td>
                     <td><?php echo $row['price'];?></td>
                     <td><?php echo $row['quantity'];?></td>
+                    <td><?php echo $row['category'];?></td>
                     <td>
-                    <a href="editInventory.php?inventoryID=<?php echo $row['id']; ?>" class="edit-link">Edit</a>
+                        <?php if (!empty($row['image_path'])): ?>
+                            <img src="<?php echo $row['image_path']; ?>" alt="Drug Image" width="100">
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <a href="editInventory.php?inventoryID=<?php echo $row['id']; ?>" class="edit-link">Edit</a>
                     </td>
                     <td>
                         <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                            <input type="hidden" name="deleteInventoryID" value="<?php echo $row['id'];?>">
+                            <input type="hidden" name="deleteInventoryID" value="<?php echo $row['id']; ?>">
                             <input type="submit" name="delete" value="Delete">
                         </form>
                     </td>
                 </tr>
             <?php endwhile; ?>
         </table>
-    <?php else: ?>
-        <p>No inventory records found.</p>
-    <?php endif; ?>
+    </div>
+<?php else: ?>
+    <p>No inventory records found.</p>
+<?php endif; ?>
 <?php endif; ?>
       
 
-<!-- Generate pagination links -->
 <div class='pagination'>
     <?php for ($i = 1; $i <= $totalPages; $i++): ?>
         <a href='viewInventory.php?page=<?php echo $i; ?>' <?php if ($i == $currentPage) echo "class='active'"; ?>>
@@ -187,7 +206,6 @@ mysqli_close($conn);
     <?php endfor; ?>
 </div>
 
-<!-- Mid section after the table -->
 <div class='midsection'>
     <a href="addInventory.php?source=viewInventory">Add drug to Inventory</a>
 </div>
@@ -199,3 +217,4 @@ mysqli_close($conn);
 </script>
 </body>
 </html>
+
