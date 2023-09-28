@@ -12,6 +12,7 @@ if (isset($_SESSION['id'])) {
 }
 
 if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
+    // Destroy the session and redirect to the login page
     session_destroy();
     //echo "<script>alert('Successfully logged out');</script>";
     header('Location: doctorLogin.php');
@@ -57,9 +58,6 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     </div>
     <div class="option">
         <a href="viewPrescriptions.php">View Prescriptions</a>
-    </div>
-    <div class="option">
-    <a href="editDoctors.php?doctorID=<?php echo $userID; ?>&source=doctorHomePage">Edit Profile</a>
     </div>
 
 </section>
