@@ -14,7 +14,7 @@ if (isset($_SESSION['id'])) {
 
 if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     session_destroy();
-    //echo "<script>alert('Successfully logged out');</script>";
+    echo "<script>alert('Successfully logged out');</script>";
     header('Location: pharmacyLogin.php');
     exit();
 }
